@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gpt_man/utils/widgets/deop_down.dart';
 
 import '../utils/constants.dart';
 import '../utils/widgets/text_widget.dart';
@@ -12,14 +13,17 @@ class Services {
         context: context,
         builder: (context) {
           return const Padding(
-            padding:  EdgeInsets.all(18.0),
+            padding: EdgeInsets.all(18.0),
             child: Row(
               children: [
                 Flexible(
                     child: TextWidget(
                   label: "Chosen Model",
                   fontSize: 16,
-                ))
+                )),
+                Flexible(
+                    flex: 2,
+                    child: ModelDropDownWidget())
               ],
             ),
           );
