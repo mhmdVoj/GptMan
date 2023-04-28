@@ -41,7 +41,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 onPressed: () async {
                   await Services.showModalSheet(context);
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.more_vert_rounded,
                   color: Colors.white,
                 ))
@@ -88,14 +88,13 @@ class _ChatScreenState extends State<ChatScreen> {
                             hintStyle: TextStyle(color: Colors.grey)),
                         controller: _textEditingController,
                         onSubmitted: (value) {
-                          // todo send message
+
                         },
                       )),
                       IconButton(
                           onPressed: () {
-                            ApiService.getModels();
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.send,
                             color: Colors.white,
                           ))

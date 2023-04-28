@@ -19,9 +19,10 @@ class Services {
                 
                 Flexible(
                     child: TextWidget(
-                  label: "Chosen Model",
+                  label: "Chosen Model : ",
                   fontSize: 16,
                 )),
+                SizedBox(width: 4,),
                 Flexible(
                     flex: 2,
                     child: ModelDropDownWidget())
