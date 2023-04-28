@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:gpt_man/services/api_service.dart';
 import 'package:gpt_man/services/assets_manager.dart';
 import 'package:gpt_man/utils/constants.dart';
 import 'package:gpt_man/utils/widgets/chat_widget.dart';
@@ -91,7 +92,9 @@ class _ChatScreenState extends State<ChatScreen> {
                         },
                       )),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            ApiService.getModels();
+                          },
                           icon: Icon(
                             Icons.send,
                             color: Colors.white,
