@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gpt_man/services/assets_manager.dart';
@@ -33,18 +34,31 @@ class ChatWidget extends StatelessWidget {
                   width: 8,
                 ),
                 Expanded(
-                  child: TextWidget(
-                    label: msg,
-                    fontSize: 14,
-                  ),
+                  child: chatIndex == 0
+                      ? TextWidget(
+                          label: msg,
+                          fontSize: 14,
+                        )
+                      : DefaultTextStyle(
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.white),
+                          child: AnimatedTextKit(
+                              isRepeatingAnimation: false,
+                              repeatForever: false,
+                              displayFullTextOnTap: true,
+                              totalRepeatCount: 1,
+                              animatedTexts: [TyperAnimatedText(msg.trim())]),
+                        ),
                 ),
-                SizedBox(width: 2,),
+                const SizedBox(
+                  width: 2,
+                ),
                 chatIndex == 0
-                    ? SizedBox.shrink()
-                    : Row(
+                    ? const SizedBox.shrink()
+                    : const Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         mainAxisSize: MainAxisSize.min,
-                        children: const [
+                        children: [
                           Icon(
                             Icons.thumb_up_alt_outlined,
                             color: Colors.white,

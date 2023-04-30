@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gpt_man/providers/chat_provider.dart';
 import 'package:gpt_man/providers/models_provider.dart';
 import 'package:gpt_man/screens/chat.dart';
 import 'package:gpt_man/utils/constants.dart';
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_)=> ModelsProvider())
+        ChangeNotifierProvider(create: (_)=> ModelsProvider()),
+        ChangeNotifierProvider(create: (_)=> ChatProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
