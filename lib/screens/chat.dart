@@ -136,23 +136,34 @@ class _ChatScreenState extends State<ChatScreen> {
   Future<void> sendMessageFCT(
       {required ModelsProvider modelsProvider,
       required ChatProvider provider}) async {
-    setState(() {
-      _isTyping = true;
-      provider.addUserMessage(msg: _textEditingController.text);
-      _focusNode.unfocus();
-    });
+    if (_textEditingController.text.isEmpty) {
+      return;
+    }
+    if (_isTyping) {
+      return;
+    }
     try {
+      String tmpMessage = _textEditingController.text;
+      setState(() {
+        _isTyping = true;
+        provider.addUserMessage(msg: tmpMessage);
+        _textEditingController.clear();
+        _focusNode.unfocus();
+      });
       await provider.sendMessageGetAnswers(
-          msg: _textEditingController.text,
-          chosenModel: modelsProvider.getCurrentModel);
+          msg: tmpMessage, chosenModel: modelsProvider.getCurrentModel);
       setState(() {});
     } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.red,
+          content: TextWidget(
+            label: e.toString(),
+          )));
       log('error in chat screen : $e');
     } finally {
       setState(() {
         scrollListToEnd();
         _isTyping = false;
-        _textEditingController.clear();
       });
     }
   }
